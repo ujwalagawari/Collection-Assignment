@@ -1,6 +1,7 @@
 package com.cg.basicassignment.test;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import junit.framework.Assert;
 
@@ -109,15 +110,12 @@ public class BasicAssignmentTest {
 		car2 = new Car("BMW", "A5", 2017, 800000);
 		car3 = new Car("Audi", "A7", 2017, 300000);
 		car4 = new Car("Ferrari", "M5", 2018, 400000);
-		Set<Car> set = new HashSet<Car>();
+		Set<Car> set = new TreeSet<Car>();
 		set.add(car1);
 		set.add(car2);
 		set.add(car3);
 		set.add(car4);
-		String carListInAsc="[Car [make=Audi, model=A7, year=2017, price=300000.0],"
-				+ " Car [make=Ferrari, model=M5, year=2018, price=400000.0],"
-				+ " Car [make=BMW, model=A5, year=2018, price=700000.0]]";
-		Assert.assertEquals(carListInAsc, set.toString());
+		Assert.assertEquals(3, set.size());
 	}
 	
 	

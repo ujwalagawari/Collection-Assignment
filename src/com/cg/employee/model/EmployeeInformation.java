@@ -16,16 +16,68 @@ package com.cg.employee.model;
  */
 public class EmployeeInformation {
 
-	private int empID;
+	private final int empID;
 	private String employeeName;
 	private String employeeDesignation;
 	private double employeeSalary;
 	private String employeeComm;
 	
+	private static int employeeNumber;
 	
+	static{
+		employeeNumber=1000;
+	}
 	
-	public EmployeeInformation() {
-		// TODO Auto-generated constructor stub
+	{
+		empID=++employeeNumber;
+	}
+	
+	public EmployeeInformation(String employeeName, String employeeDesignation, double employeeSalary, String employeeComm) {
+		this.employeeName = employeeName;
+		this.employeeDesignation = employeeDesignation;
+		this.employeeSalary = employeeSalary;
+		this.employeeComm = employeeComm;
 	}
 
+	public String getEmployeeName() {
+		return employeeName;
+	}
+
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
+	}
+
+	public String getEmployeeDesignation() {
+		return employeeDesignation;
+	}
+
+	public void setEmployeeDesignation(String employeeDesignation) {
+		this.employeeDesignation = employeeDesignation;
+	}
+
+	public String getEmployeeComm() {
+		return employeeComm;
+	}
+
+	public void setEmployeeComm(String employeeComm) {
+		this.employeeComm = employeeComm;
+	}
+
+	public int getEmpID() {
+		return empID;
+	}
+
+	public double getEmployeeSalary() {
+		return employeeSalary;
+	}
+
+	@Override
+	public String toString() {
+		return "EmployeeInformation [empID=" + empID + ", employeeName="
+				+ employeeName + ", employeeDesignation=" + employeeDesignation
+				+ ", employeeSalary=" + employeeSalary + ", employeeComm="
+				+ employeeComm + "]";
+	}
+
+	
 }

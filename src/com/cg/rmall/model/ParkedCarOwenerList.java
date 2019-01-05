@@ -39,68 +39,48 @@ public class ParkedCarOwenerList {
 			}else{
 				if(carList.size()>=tokens){
 					if(tokens != carList.get(tokens-1).getToken()){
-						parkedCarOwnerDetails.setToken(tokens);
-						float sec =  ((float) tokens)/20;
-						section = (int) Math.ceil(sec);
-						if(section<=4){
-							parkedCarOwnerDetails.setFloor(1);
-							parkedCarOwnerDetails.setSection(section);
-							while(tokens>20){
-								tokens-=20;
-							}
-							parkedCarOwnerDetails.setLocation(tokens);
-						}else if(section<=8 && section>4){
-							parkedCarOwnerDetails.setFloor(2);
-							parkedCarOwnerDetails.setSection(section-4);
-							while(tokens>20){
-								tokens-=20;
-							}
-							parkedCarOwnerDetails.setLocation(tokens);
-						}else if(section<=12 && section>9){
-							parkedCarOwnerDetails.setFloor(3);
-							parkedCarOwnerDetails.setSection(section-8);
-							while(tokens>20){
-								tokens-=20;
-							}
-							parkedCarOwnerDetails.setLocation(tokens);
-						}
+						setCarLocation(parkedCarOwnerDetails, tokens);
 						break outerloop;
 					}
 				}else if(carList.size()+1 == tokens){
-						parkedCarOwnerDetails.setToken(tokens);
-						float sec =  ((float) tokens)/20;
-						section = (int) Math.ceil(sec);
-						if(section<=4){
-							parkedCarOwnerDetails.setFloor(1);
-							parkedCarOwnerDetails.setSection(section);
-							while(tokens>20){
-								tokens-=20;
-							}
-							parkedCarOwnerDetails.setLocation(tokens);
-						}else if(section<=8 && section>4){
-							parkedCarOwnerDetails.setFloor(2);
-							parkedCarOwnerDetails.setSection(section-4);
-							while(tokens>20){
-								tokens-=20;
-							}
-							parkedCarOwnerDetails.setLocation(tokens);
-						}else if(section<=12 && section>9){
-							parkedCarOwnerDetails.setFloor(3);
-							parkedCarOwnerDetails.setSection(section-8);
-							while(tokens>20){
-								tokens-=20;
-							}
-							parkedCarOwnerDetails.setLocation(tokens);
-						}
+						setCarLocation(parkedCarOwnerDetails, tokens);
 						break outerloop;
 				}
 			}
 		}
-		
 		carList.add(parkedCarOwnerDetails);
 		return parkedCarOwnerDetails.getToken();
 	}
 	
+	private void setCarLocation(ParkedCarOwnerDetails parkedCarOwnerDetails, int tokens) {
+		int section=0;
+		parkedCarOwnerDetails.setToken(tokens);
+		float sec =  ((float) tokens)/20;
+		section = (int) Math.ceil(sec);
+		if(section<=4){
+			parkedCarOwnerDetails.setFloor(1);
+			parkedCarOwnerDetails.setSection(section);
+			while(tokens>20){
+				tokens-=20;
+			}
+			parkedCarOwnerDetails.setLocation(tokens);
+		}else if(section<=8 && section>4){
+			parkedCarOwnerDetails.setFloor(2);
+			parkedCarOwnerDetails.setSection(section-4);
+			while(tokens>20){
+				tokens-=20;
+			}
+			parkedCarOwnerDetails.setLocation(tokens);
+		}else if(section<=12 && section>9){
+			parkedCarOwnerDetails.setFloor(3);
+			parkedCarOwnerDetails.setSection(section-8);
+			while(tokens>20){
+				tokens-=20;
+			}
+			parkedCarOwnerDetails.setLocation(tokens);
+		}
+	}
+
 	/**
 	 * Remove car from parking
 	 * @param parkedCarOwnerDetails
@@ -134,3 +114,87 @@ public class ParkedCarOwenerList {
 		return parkedCarOwnerDetails;
 	}
 }
+
+
+
+/*
+public int addNewCar(ParkedCarOwnerDetails parkedCarOwnerDetails){
+	Collections.sort(carList);
+	
+	int section=0;
+	outerloop:
+	for(int tokens = 1; tokens <= TOTAL_TOKEN; tokens++){
+		if(carList.isEmpty()){ //if their is no car in parking at that time assign then for first 
+						//car token=1, location=1, section=1, floor=1 to car 
+			parkedCarOwnerDetails.setToken(1);
+			parkedCarOwnerDetails.setFloor(1);
+			parkedCarOwnerDetails.setSection(1);
+			parkedCarOwnerDetails.setLocation(1);
+			break outerloop;
+		}else{
+			if(carList.size()>=tokens){
+				if(tokens != carList.get(tokens-1).getToken()){
+					
+					setCarLocation(parkedCarOwnerDetails, tokens);
+					
+					parkedCarOwnerDetails.setToken(tokens);
+					float sec =  ((float) tokens)/20;
+					section = (int) Math.ceil(sec);
+					if(section<=4){
+						parkedCarOwnerDetails.setFloor(1);
+						parkedCarOwnerDetails.setSection(section);
+						while(tokens>20){
+							tokens-=20;
+						}
+						parkedCarOwnerDetails.setLocation(tokens);
+					}else if(section<=8 && section>4){
+						parkedCarOwnerDetails.setFloor(2);
+						parkedCarOwnerDetails.setSection(section-4);
+						while(tokens>20){
+							tokens-=20;
+						}
+						parkedCarOwnerDetails.setLocation(tokens);
+					}else if(section<=12 && section>9){
+						parkedCarOwnerDetails.setFloor(3);
+						parkedCarOwnerDetails.setSection(section-8);
+						while(tokens>20){
+							tokens-=20;
+						}
+						parkedCarOwnerDetails.setLocation(tokens);
+					}
+					break outerloop;
+				}
+			}else if(carList.size()+1 == tokens){
+					parkedCarOwnerDetails.setToken(tokens);
+					float sec =  ((float) tokens)/20;
+					section = (int) Math.ceil(sec);
+					if(section<=4){
+						parkedCarOwnerDetails.setFloor(1);
+						parkedCarOwnerDetails.setSection(section);
+						while(tokens>20){
+							tokens-=20;
+						}
+						parkedCarOwnerDetails.setLocation(tokens);
+					}else if(section<=8 && section>4){
+						parkedCarOwnerDetails.setFloor(2);
+						parkedCarOwnerDetails.setSection(section-4);
+						while(tokens>20){
+							tokens-=20;
+						}
+						parkedCarOwnerDetails.setLocation(tokens);
+					}else if(section<=12 && section>9){
+						parkedCarOwnerDetails.setFloor(3);
+						parkedCarOwnerDetails.setSection(section-8);
+						while(tokens>20){
+							tokens-=20;
+						}
+						parkedCarOwnerDetails.setLocation(tokens);
+					}
+					break outerloop;
+			}
+		}
+	}
+	
+	carList.add(parkedCarOwnerDetails);
+	return parkedCarOwnerDetails.getToken();
+}*/
